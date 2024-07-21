@@ -85,7 +85,7 @@ int main(int argc, char **argv)
 
         if (magic) {
             if (bflag) {
-                for (uint64_t i = 0; i < info.allocated; i++) {
+                for (int64_t i = info.allocated - 1; i >= 0; i--) {
                     print_bits(info.content[i]);
                     putchar(' ');
                 }
@@ -95,14 +95,14 @@ int main(int argc, char **argv)
             }
 
             if (hflag) {
-                for (uint64_t i = 0; i < info.allocated; i++)
+                for (int64_t i = info.allocated - 1; i >= 0; i--)
                     printf("%X ", info.content[i]);
                 putchar('\n');
                 free(info.content);
                 continue;
             }
 
-            for (uint64_t i = 0; i < info.allocated; i++)
+            for (int64_t i = 0; i < info.allocated; i++)
                 printf("%d ", info.content[i]);
             putchar('\n');
             free(info.content);
